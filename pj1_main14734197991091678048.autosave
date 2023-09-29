@@ -1,0 +1,25 @@
+
+
+int Nlines = 4;
+Line[] lines = new Line[Nlines];
+Line lu = new Line(0, 180, 80, 350);    // left up
+Line ld = new Line(80, 350, 0, 500);    // left down
+Line ru = new Line(480, 180, 400, 350);    // left down
+Line rd = new Line(400, 350, 480, 500);    // left down
+
+void setup(){
+    size(480,720);
+    lines[0] = lu;
+    lines[1] = ld;
+    lines[2] = ru;
+    lines[3] = rd;
+  
+}
+
+
+void draw(){
+  for(int i = 0;i<Nlines;i++){
+    line(lines[i].p0.x,lines[i].p0.y,lines[i].p1.x, lines[i].p1.y);
+  }
+
+}
