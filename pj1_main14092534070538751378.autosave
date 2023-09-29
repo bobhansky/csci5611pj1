@@ -34,19 +34,8 @@ Circle balls[] = new Circle[Nballs];
 Vec2 vel[] = new Vec2[Nballs];
 float mass[] = new float[Nballs];
 
-int NParti = 0;
-int maxParticles = 400;
-Vec2 velPat [] = new Vec2[maxParticles];
-Vec2 posPat [] = new Vec2[maxParticles];
-boolean displayParticle = false;
-float genRate = 40;
-
-float COR = 0.6;
+float COR = 0.75;
 Vec2 gravity = new Vec2(0,500);
-
-// time
-long t1 = 0;
-long t2 = 0;
 
 
 
@@ -78,8 +67,6 @@ void setup(){
       vel[i] = new Vec2(0,-800 - random(400));    // 800 to 1200
       mass[i] = balls[i].radius * balls[i].radius;
     }
-
-
   
 }
 
@@ -93,8 +80,6 @@ void draw(){
 
 
   update(1.0/frameRate);
-
- 
 }
 
 void drawScene(){
@@ -117,7 +102,7 @@ void drawScene(){
 void drawBalls(){
   fill(255, 255, 0);
 
-  for(int i = 0; i < curN; i++){
+  for(int i = 0; i < Nballs; i++){
     circle(balls[i].center.x, balls[i].center.y, balls[i].radius*2);
   }
 
@@ -125,7 +110,7 @@ void drawBalls(){
 
 // updates for balls
 void update(float dt){
-    for(int i = 0; i < curN; i++){
+    for(int i = 0; i < Nballs; i++){
       Vec2 downVel = gravity.times(dt);
       vel[i].add(downVel);
 
@@ -171,11 +156,10 @@ void update(float dt){
           vel[i].subtract(velNormal.times(1+COR)); 
 
           // hit purple quad, activate sound and particle effect
-          if(j > 7){
+          if(j > 6){
               //SoundFile file;
               //file = new SoundFile(this, "fireworks.mp3");
               //file.play();
-              displayParticle = true;
           }
         }
       }
@@ -191,9 +175,7 @@ void update(float dt){
       }
     }
     //    --------------------- with obstacles ends ----------------------
-    // with other balls
-    for(int j = i + 1; j < curN; j++){
-      if(curN == 1) break;
+    for(int j = i + 1; j < Nballs; j++){
       if(circleInterCircle(balls[i], balls[j])){
         // position correction
         Vec2 delta = balls[i].center.minus(balls[j].center);
@@ -215,62 +197,15 @@ void update(float dt){
       }
     }
   }    
-
-  // draw particle
-  float toGen_float = genRate * dt;
-  int toGen = int(toGen_float);
-  float fractPart = toGen_float - toGen;
-  if (random(1) < fractPart) toGen += 1;
-
-
-   if((t2 - t1) > 1000000l * 1000l * 10l){  // 10 s
-      t1 = 0;
-      t2 = 0;
-      displayParticle = false;
-
-      // particle initial position sr
-      NParti = 0;
-  }
-
-   if(displayParticle){
-      if(t1 == 0) t1 = System.nanoTime();
-      else{
-        t2 =  System.nanoTime();
-      }
-
-      for (int i = 0; i < toGen; i++){
-        if (NParti >= maxParticles) break;
-        posPat[NParti] = new Vec2(255,585);
-        velPat[NParti] = new Vec2(30 + random(60), -190 - random(10)); 
-        NParti += 1;
-      }
-
-      Vec2 downVel = gravity.times(dt);
-      for(int i = 0; i < NParti; i ++){
-        circle(posPat[i].x, posPat[i].y, 2*2);
-        posPat[i].add(velPat[i].times(dt));
-        velPat[i].add(downVel);
-      }
-   } 
     
 }
 
 void keyPressed(){
   if(key == 's'){
-    if(curN < Nballs)
-      curN++;
+    
   }
   if(key == 'r'){
     println("Resetting the simulation");
-    curN = 0;
-    NParti = 0;
-    displayParticle = false;
-
-    for(int i = 0; i < Nballs; i++){
-      balls[i] = new Circle(450, 680, 15);
-      vel[i] = new Vec2(0,-800 - random(800));    // 800 to 1200
-      mass[i] = balls[i].radius * balls[i].radius;
-    }
 
     return;
   }
