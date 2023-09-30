@@ -1,6 +1,11 @@
 # csci5611pj1
 # Import processing Sound library for sound effect
 
+### control the simulation:
+
+**s** to send ball from plunger (at most 5 balls in each simulation)
+
+**r** to reset
 
 # demo image:
 ![alt text](https://github.com/bobhansky/csci5611pj1/blob/main/img.png)
@@ -8,6 +13,7 @@
 ### demo video:
 
 https://www.youtube.com/watch?v=kgArrB1H1Wc
+
 
 # Timestamp
 ## (also under the youtube video description )
