@@ -1,7 +1,7 @@
-# csci5611pj1
-# Import processing Sound library for sound effect
-
+# csci5611pj1    
 # Name: Bob Zhou
+## Import processing Sound library for sound effect
+ 
 
 ### control the simulation:
 
