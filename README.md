@@ -1,6 +1,8 @@
 # csci5611pj1
 # Import processing Sound library for sound effect
 
+# Name: Bob Zhou
+
 ### control the simulation:
 
 **s** to send ball from plunger (at most 5 balls in each simulation)
