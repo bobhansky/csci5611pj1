@@ -48,7 +48,7 @@ Vec2 gravity = new Vec2(0,500);
 long t1 = 0;
 long t2 = 0;
 
-
+SoundFile file;
 
 
 void setup(){
@@ -80,7 +80,7 @@ void setup(){
     }
 
 
-  
+  file = new SoundFile(this, "fireworks.mp3");
 }
 
 
@@ -172,9 +172,9 @@ void update(float dt){
 
           // hit purple quad, activate sound and particle effect
           if(j > 7){
-              //SoundFile file;
-              //file = new SoundFile(this, "fireworks.mp3");
-              //file.play();
+              
+              
+              file.play();
               displayParticle = true;
           }
         }
