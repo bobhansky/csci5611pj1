@@ -16,7 +16,7 @@ https://www.youtube.com/watch?v=kgArrB1H1Wc
 
 
 # Timestamp
-## (also under the youtube video description )
+## (also available under the youtube video description )
 <pre>
 
 Basic Pinball Dynamics && Circular Obstacles can be seen throghout the video
